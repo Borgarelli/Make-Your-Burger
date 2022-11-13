@@ -32,7 +32,7 @@
         text-align: center;
         font-size: 60px;
         text-shadow: 3px 3px 2px #222;
-        background-color: rgba(2, 2, 2, 0.445);
+        background-color: rgba(2, 2, 2, 0.445); /*Efeito de tranlucidez */
         padding: 20px 40px;
     }
 </style>
