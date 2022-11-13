@@ -112,7 +112,7 @@
     }
 
     .submit-btn:hover {
-        background-color: transparent;
+        background-color: transparent; /*Para dar efeito de tranparencia ao botão */
         color: #222;
     }
 </style>
