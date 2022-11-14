@@ -2,7 +2,7 @@
     <p>Componente de mensagem</p>
     <div>
         <div>
-            <form id="id-form">
+            <form id="id-form" @submit="createBurger"> <!--Atribuindo o evento ao formulário, sempre que o botão de submit for utilizado, retorna a mensagem de criação do lanche no console-->
               <div class="input-container">
                 <label for="nome">Nome do Cliente </label>
                 <input type="text" id="nome" name="nome" v-model="nome" placeholder="Digite o seu nome">
@@ -63,6 +63,39 @@
                 this.carnes = data.carnes; //carnes
                 this.opcionaisdata = data.opcionais; //opcionais
 
+            },
+
+            async createBurger(e) { //criação do metódo para criar um lanche, atribuindo ele a um evento
+
+                e.preventDefault();
+
+                const data = { //criação do objeto para definir os parametros que serviram para enviar dados ao banco
+                    nome: this.nome,
+                    pao: this.pao,
+                    carne: this.carne,
+                    opicionais: Array.from(this.opcionais), //Aqui foi necessário pois como Opcionais no data está como um elemento de lista, foi necessário passar o dado por uma maneira diferente
+                    status: "Solicitado"
+                }
+                const dataJson = JSON.stringify(data);
+
+                const req = await fetch("http://localhost:3000/burgers", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: dataJson
+                });
+
+                const res = await req.json();
+
+                //colocar uma msg de sistema
+
+                //limpar msg
+
+                //limpar os campos
+                this.nome = "";
+                this.carne = "";
+                this.pao = "";
+                this.opcionais = "";
+                
             }
 
             
