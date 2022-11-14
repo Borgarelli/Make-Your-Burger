@@ -76,9 +76,9 @@
                     opicionais: Array.from(this.opcionais), //Aqui foi necessário pois como Opcionais no data está como um elemento de lista, foi necessário passar o dado por uma maneira diferente
                     status: "Solicitado"
                 }
-                const dataJson = JSON.stringify(data);
+                const dataJson = JSON.stringify(data); //Objeto que transforma os dados em formato de string e manda para o banco
 
-                const req = await fetch("http://localhost:3000/burgers", {
+                const req = await fetch("http://localhost:3000/burgers", { //Aqui cria o metódo post que conecta com o localhost do backend gerado pelo vue
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: dataJson
