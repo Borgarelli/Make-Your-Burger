@@ -99,7 +99,7 @@
     }
 
     #opicional-container {
-        flex-direction: row;
+        display: flex;
         flex-wrap: wrap;
         
     }
