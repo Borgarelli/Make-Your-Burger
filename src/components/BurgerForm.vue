@@ -1,8 +1,8 @@
 <template>
-    <p>Componente de mensagem</p>
+    <Message :msg="msg" v-show="msg" /> <!--Envia atráves do props a mensagem que será exibida no component Message, por padrão ela é definida como null, porém como foi definido dentro do metódo de criar hamburguers, quando um pedido for realizado, o valor de msg deixará de ser null e retornará que a mensagem de que o pedido foi realizado-->
     <div>
         <div>
-            <form id="id-form" @submit="createBurger"> <!--Atribuindo o evento ao formulário, sempre que o botão de submit for utilizado, retorna a mensagem de criação do lanche no console-->
+            <form id="id-form" @submit="createBurger"> <!--Atribuindo o evento ao formulário, sempre que o botão de submit for utilizado, envia os dados registrados no formulário para o banco-->
               <div class="input-container">
                 <label for="nome">Nome do Cliente </label>
                 <input type="text" id="nome" name="nome" v-model="nome" placeholder="Digite o seu nome">
@@ -12,7 +12,7 @@
                 <select name="pao" id="pao" v-model="pao">
                     <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">
                         {{pao.tipo}}
-                    </option> <!--Conexão com o banco na coluna de paes-->
+                    </option> <!--Conexão com o banco na tabela de paes-->
                 </select>           
               </div>
               <div class="input-container">
@@ -20,14 +20,14 @@
                 <select name="carne" id="carne" v-model="carne">
                     <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">
                         {{carne.tipo}}
-                    </option> <!--Conexão com o banco na coluna de carnes-->
+                    </option> <!--Conexão com o banco na tabela de carnes-->
                 </select>           
               </div>
               <div id="opicional-container">
                 <label id="opcionais-title" for="opcionais">Selecione os opcionais: </label>
                  <div class="checkbox-container" v-for="opcional in opcionaisdata" :key="opcional.id">
                     <input id="check" type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.tipo">
-                    <span> {{opcional.tipo}} </span> <!--Conexão com o banco na coluna de opcionais-->
+                    <span> {{opcional.tipo}} </span> <!--Conexão com o banco na tabela de opcionais-->
                  </div>        
               </div>
                 <div class="input-container">
@@ -39,8 +39,12 @@
 </template>
 
 <script>
+import Message from './Message.vue'
     export default {
         name: 'BurgerForm',
+        components:{
+            Message
+        },
         data(){
             return {
                 paes: null, //Estão no plural para identificar que são os recebidos da api "fake"
@@ -80,21 +84,25 @@
 
                 const req = await fetch("http://localhost:3000/burgers", { //Aqui cria o metódo post que conecta com o localhost do backend gerado pelo vue
                     method: "POST",
-                    headers: {"Content-Type": "application/json"},
+                    headers: {"Content-Type" : "application/json"},
                     body: dataJson
                 });
 
-                const res = await req.json();
+                const res = await req.json()
+
+                console.log(res)
 
                 //colocar uma msg de sistema
+                this.msg = 'Pedido realizado com sucesso' //Retorna a mensagem quando o pedido for realizado
 
                 //limpar msg
+                setTimeout(() => this.msg = "", 3000); //Limpa todo o campo depois de 3 segundos
 
                 //limpar os campos
                 this.nome = "";
                 this.carne = "";
                 this.pao = "";
-                this.opcionais = "";
+                this.opcionais = [];
                 
             }
 
