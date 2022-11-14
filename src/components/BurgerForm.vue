@@ -11,21 +11,25 @@
                 <label for="pao">Escolha o pão: </label>
                 <select name="pao" id="pao" v-model="pao">
                     <option value="">Selecione o seu pão: </option>
-                    <option value="integral">Integral</option>
+                    <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">
+                        {{pao.tipo}}
+                    </option> <!--Conexão com o banco na coluna de paes-->
                 </select>           
               </div>
               <div class="input-container">
                 <label for="carne">Escolha a carne do seu lanche: </label>
                 <select name="carne" id="carne" v-model="carne">
                     <option value="">Selecione o tipo de carne: </option>
-                    <option value="maminha">Maminha</option>
+                    <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">
+                        {{carne.tipo}}
+                    </option> <!--Conexão com o banco na coluna de carnes-->
                 </select>           
               </div>
               <div id="opicional-container">
-                <label id="opcional-title" for="opcional">Selecione os opcionais: </label>
-                 <div class="checkbox-container">
-                    <input type="checkbox" name="opcional" v-model="opcional" value="presunto">
-                    <span> Presunto</span>
+                <label id="opcionais-title" for="opcionais">Selecione os opcionais: </label>
+                 <div class="checkbox-container" v-for="opcional in opcionaisdata" :key="opcional.id">
+                    <input id="check" type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.tipo">
+                    <span> {{opcional.tipo}} </span> <!--Conexão com o banco na coluna de opcionais-->
                  </div>        
               </div>
                 <div class="input-container">
@@ -41,8 +45,32 @@
         name: 'BurgerForm',
         data(){
             return {
+                paes: null, //Estão no plural para identificar que são os recebidos da api "fake"
+                carnes: null,
+                opcionaisdata: null,
+                nome: null,
+                pao:null, //São os dados que iram ser enviados para o banco
+                carne:null,
+                opcionais: [],
+                status: "Solicitado",
+                msg: null
+            }
+        },
+        methods:{
+            async getIngredientes() { //Metódo para retornar todos os ingredientes registrados no banco através no link que o vue gera !!Importante não esquecer de rodar um (npm run backend) para funcionar
+                const req = await fetch("http://localhost:3000/ingredientes"); 
+                const data = await req.json(); //Define um tempo para retornar os dados através da requisição json
+
+                this.paes = data.paes; //Necessário criar por aqui o metódo, cada um é responsável pela requisição de uma coluna em especifico essa é pelos paes
+                this.carnes = data.carnes; //carnes
+                this.opcionaisdata = data.opcionais; //opcionais
 
             }
+
+            
+        },
+        mounted(){ //Aqui inia um lyfeciclehook que irá retornar os dados 
+            this.getIngredientes()
         }
     }
 </script>
@@ -72,12 +100,13 @@
         width: 300px;
     }
 
-    #optional-container {
+    #optional-container{
         flex-direction: row;
         flex-wrap: wrap;
+        
     }
 
-    #opcional-title {
+    #opcionais-title {
         width: 100%;
     }
 
@@ -91,7 +120,7 @@
     .checkbox-container span,
     .checkbox-container input {
         width: auto;
-        margin-top: 10px
+        margin-top: 10px;
     }
 
     .checkbox-container span {
