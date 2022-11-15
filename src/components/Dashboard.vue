@@ -30,7 +30,7 @@
                             {{stat.tipo}}
                         </option>
                     </select>
-                    <button class ="delete-btn" @click="deleteBurger(burger.id)">Cancelar</button>
+                    <button class ="delete-btn" @click="deleteBurger(burger.id)">Cancelar</button>                    
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                 const res = await req.json();
 
                 this.getPedidos(); //Já faz um retorno dos burgers registrados, logo após exlcuir algum
-            }   
+            }
         },
         mounted(){
             this.getPedidos()
