@@ -38,8 +38,31 @@
         name: 'Dashboard',
         data(){
             return {
+                ids: null,
+                nomes: null,
+                paes: null,
+                carnes:null,
+                opcionais:null,
+                status: "Selecionado"
 
             }
+        },
+        methods:{
+            async getHamburgers(){
+                const req = await fetch("http://localhost:3000/burgers");
+                const data = await req.json();
+
+                this.ids = data.ids;
+                this.nomes = data.nomes;
+                this.paes = data.paes;
+                this.carnes = data.carnes;
+                this.opcionais = data.opcionais;
+
+                console.log(data);
+            }
+        },
+        mounted(){
+            this.getHamburgers()
         }
     }
 </script>
