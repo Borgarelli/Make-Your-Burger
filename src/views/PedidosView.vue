@@ -11,11 +11,6 @@ import Dashboard from '../components/Dashboard.vue';
     name:'Pedidos',
     components:{
       Dashboard
-    },
-    data(){
-      return {
-        
-      }
     }
   }
 </script>

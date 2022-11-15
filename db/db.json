@@ -147,6 +147,17 @@
       ],
       "status": "Solicitado",
       "id": 6
+    },
+    {
+      "nome": "Zé",
+      "pao": "3 Queijos",
+      "carne": "Alcatra",
+      "opcional": [
+        "Pepino",
+        "Salame"
+      ],
+      "status": "Solicitado",
+      "id": 7
     }
   ]
 }

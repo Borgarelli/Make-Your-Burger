@@ -6,12 +6,7 @@
 
 <script>
     export default {
-        name: 'Banner',
-        data(){
-            return {
-
-            }
-        }
+        name: 'Banner'
     }
 </script>
 
