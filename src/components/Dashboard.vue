@@ -6,7 +6,7 @@
                 <div>Cliente: </div>
                 <div>Pão: </div>
                 <div>Carnes: </div>
-                <div>Opcionais</div>
+                <div>Opcionais: </div>
                 <div>Ações: </div> 
             </div>
         </div>
@@ -24,8 +24,11 @@
                     </ul>
                 </div>
                 <div>
-                    <select name status="" class="status">
+                    <select name="status" class="status">
                         <option value="">Selecione</option>
+                        <option v-for="stat in status" :key="stat.id" value="stat.tipo" :selected="burger.status == stat.tipo"> <!--Aqui o :selected está bindado para definir o status em que o pedido do hamburger se encontra, no caso como o pedido ja foi solicitado, todos os status de pedidos estaram como solicitados por enquanto-->
+                            {{stat.tipo}}
+                        </option>
                     </select>
                     <button class ="delete-btn">Cancelar</button>
                 </div>
@@ -57,7 +60,17 @@
                 console.log(this.burgers);
 
                 //resgatar o status
-            }
+                this.getStatus();
+            },
+            async getStatus() {
+                const req = await fetch("http://localhost:3000/status");
+
+                const data = await req.json();
+
+                this.status = data;
+
+                console.log(data);
+            }   
         },
         mounted(){
             this.getPedidos()
