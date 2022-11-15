@@ -77,7 +77,7 @@ import Message from './Message.vue'
                     nome: this.nome,
                     pao: this.pao,
                     carne: this.carne,
-                    opicionais: Array.from(this.opcionais), //Aqui foi necessário pois como Opcionais no data está como um elemento de lista, foi necessário passar o dado por uma maneira diferente
+                    opcional: Array.from(this.opcionais), //Aqui foi necessário pois como Opcionais no data está como um elemento de lista, foi necessário passar o dado por uma maneira diferente
                     status: "Solicitado"
                 }
                 const dataJson = JSON.stringify(data); //Objeto que transforma os dados em formato de string e manda para o banco

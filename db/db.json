@@ -86,7 +86,7 @@
       "nome": "Borgarelli",
       "pao": "Parmesão e Orégano",
       "carne": "Alcatra",
-      "opicionais": [
+      "opcionais": [
         "Bacon",
         "Cheddar"
       ],
@@ -97,7 +97,7 @@
       "nome": "Josias",
       "pao": "Pão Mexicano",
       "carne": "Veggie burger",
-      "opicionais": [
+      "opcionais": [
         "Cebola roxa",
         "Tomate"
       ],
@@ -108,7 +108,7 @@
       "nome": "Kauã Walbon Santos Borgarelli Tavares",
       "pao": "Integral",
       "carne": "Maminha",
-      "opicionais": [
+      "opcionais": [
         "Bacon",
         "Cheddar"
       ],
@@ -119,7 +119,7 @@
       "nome": "Maria",
       "pao": "Integral",
       "carne": "Veggie burger",
-      "opicionais": [
+      "opcionais": [
         "Tomate",
         "Pepino",
         "Cebola roxa"
@@ -131,7 +131,7 @@
       "nome": "Borgarelli",
       "pao": "Italiano Branco",
       "carne": "Maminha",
-      "opicionais": [
+      "opcionais": [
         "Tomate",
         "Salame"
       ],
@@ -142,7 +142,7 @@
       "nome": "Kauã Walbon Santos Borgarelli Tavares",
       "pao": "Parmesão e Orégano",
       "carne": "Veggie burger",
-      "opicionais": [
+      "opcionais": [
         "Cheddar"
       ],
       "status": "Solicitado",

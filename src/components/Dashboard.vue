@@ -11,15 +11,16 @@
             </div>
         </div>
         <div id="table-rows">
-            <div class="burger-table-row">
-                <div class="order-number">1</div>
-                <div>Kauã</div>
-                <div>3 Queijos</div>
-                <div>Maminha</div>
+            <div class="burger-table-row" v-for="burger in burgers" :key="burger.id">
+                <div class="order-number">{{burger.id}}</div>
+                <div>{{burger.nome}}</div>
+                <div>{{burger.pao}}</div>
+                <div>{{burger.carne}}</div>
                 <div>
                     <ul>
-                        <li>Bacon</li>
-                        <li>Cheddar</li>
+                        <li v-for="(opcional, index) in burger.opcionais" :key="index">
+                            {{opcional}}
+                        </li>
                     </ul>
                 </div>
                 <div>
@@ -38,31 +39,28 @@
         name: 'Dashboard',
         data(){
             return {
-                ids: null,
-                nomes: null,
-                paes: null,
-                carnes:null,
-                opcionais:null,
-                status: "Selecionado"
+                burgers: null, //Ao invés de criar um objeto para cada coluna da tabela burgers, foi criado um para retornar todos os dados
+                burger_id: null, //E apenas um para retornar o id
+                status: []
 
             }
         },
         methods:{
-            async getHamburgers(){
+            async getPedidos() {
+
                 const req = await fetch("http://localhost:3000/burgers");
+
                 const data = await req.json();
 
-                this.ids = data.ids;
-                this.nomes = data.nomes;
-                this.paes = data.paes;
-                this.carnes = data.carnes;
-                this.opcionais = data.opcionais;
+                this.burgers = data; //Transforma os valores recebidos do banco em data, no caso retorna todos os valores armazenados na tabela de burgers, ou seja, todos os pedidos cadastrados pelo formulário
 
-                console.log(data);
+                console.log(this.burgers);
+
+                //resgatar o status
             }
         },
         mounted(){
-            this.getHamburgers()
+            this.getPedidos()
         }
     }
 </script>
@@ -99,6 +97,11 @@
         border-bottom: 1px solid #ccc;
     }
 
+    .burger-table-row li {
+        margin-bottom: 10px;
+    }
+
+    
     #table-head .order-id,
     .burger-table-row .order-number{
         width: 5%;
