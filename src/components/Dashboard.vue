@@ -30,7 +30,7 @@
                             {{stat.tipo}}
                         </option>
                     </select>
-                    <button class ="delete-btn">Cancelar</button>
+                    <button class ="delete-btn" @click="deleteBurger(burger.id)">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -62,6 +62,7 @@
                 //resgatar o status
                 this.getStatus();
             },
+
             async getStatus() {
                 const req = await fetch("http://localhost:3000/status");
 
@@ -70,6 +71,17 @@
                 this.status = data;
 
                 console.log(data);
+            },
+            
+            async deleteBurger(id) { //Metódo para excluir burgers
+
+                const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+                    method: "DELETE"
+                });
+
+                const res = await req.json();
+
+                this.getPedidos(); //Já faz um retorno dos burgers registrados, logo após exlcuir algum
             }   
         },
         mounted(){
