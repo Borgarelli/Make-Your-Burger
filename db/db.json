@@ -103,17 +103,6 @@
       ],
       "status": "Solicitado",
       "id": 2
-    },
-    {
-      "nome": "Borgarelli",
-      "pao": "Italiano Branco",
-      "carne": "Picanha",
-      "opcionais": [
-        "Cheddar",
-        "Bacon"
-      ],
-      "status": "Solicitado",
-      "id": 3
     }
   ]
 }

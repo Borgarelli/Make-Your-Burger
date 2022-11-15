@@ -1,4 +1,5 @@
 <template>
+    <Message :msg="msg" v-show="msg" />
     <div id="burger-table">
         <div>
             <div id="table-head">
@@ -25,7 +26,7 @@
                 </div>
                 <div>
                     <select name="status" class="status">
-                        <option value="">Selecione</option>
+                        <!-- <option value="">Selecione</option> -->
                         <option v-for="stat in status" :key="stat.id" value="stat.tipo" :selected="burger.status == stat.tipo"> <!--Aqui o :selected está bindado para definir o status em que o pedido do hamburger se encontra, no caso como o pedido ja foi solicitado, todos os status de pedidos estaram como solicitados por enquanto-->
                             {{stat.tipo}}
                         </option>
@@ -38,13 +39,18 @@
 </template>
 
 <script>
+import Message from './Message.vue';
     export default {
         name: 'Dashboard',
+        components: {
+            Message
+        },
         data(){
             return {
                 burgers: null, //Ao invés de criar um objeto para cada coluna da tabela burgers, foi criado um para retornar todos os dados
                 burger_id: null, //E apenas um para retornar o id
-                status: []
+                status: [],
+                msg: null
 
             }
         },
@@ -82,6 +88,10 @@
                 const res = await req.json();
 
                 this.getPedidos(); //Já faz um retorno dos burgers registrados, logo após exlcuir algum
+
+                this.msg = "Pedido cancelado";
+
+                setTimeout(() => this.msg="", 3000);
             }
         },
         mounted(){
