@@ -20,5 +20,10 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        transition: .5s;
+    }
+
+    #footer:hover{
+        color: white;
     }
 </style>

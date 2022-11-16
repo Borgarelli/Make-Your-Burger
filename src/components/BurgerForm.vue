@@ -4,11 +4,11 @@
         <div>
             <form id="id-form" @submit="createBurger"> <!--Atribuindo o evento ao formulário, sempre que o botão de submit for utilizado, envia os dados registrados no formulário para o banco-->
               <div class="input-container">
-                <label for="nome">Nome do cliente </label>
+                <label for="nome" class="labelclass">Nome do cliente </label>
                 <input type="text" id="nome" name="nome" v-model="nome" placeholder="Digite o seu nome">
               </div>
               <div class="input-container">
-                <label for="pao">Escolha o pão: </label>
+                <label for="pao" class="labelclass">Escolha o pão: </label>
                 <select name="pao" id="pao" v-model="pao">
                     <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">
                         {{pao.tipo}}
@@ -16,7 +16,7 @@
                 </select>           
               </div>
               <div class="input-container">
-                <label for="carne">Escolha a carne do seu lanche: </label>
+                <label for="carne" class="labelclass">Escolha a carne do seu lanche: </label>
                 <select name="carne" id="carne" v-model="carne">
                     <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">
                         {{carne.tipo}}
@@ -26,8 +26,9 @@
               <div id="opicional-container">
                 <label id="opcionais-title" for="opcionais">Selecione os opcionais: </label>
                  <div class="checkbox-container" v-for="opcional in opcionaisdata" :key="opcional.id">
+                    <label class="labelcheck">
                     <input id="check" type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.tipo">
-                    <span> {{opcional.tipo}} </span> <!--Conexão com o banco na tabela de opcionais-->
+                     {{opcional.tipo}} </label> <!--Conexão com o banco na tabela de opcionais-->
                  </div>        
               </div>
                 <div class="input-container">
@@ -121,7 +122,8 @@ import Message from './Message.vue'
         margin-bottom: 20px;
     }
 
-    label {
+    .labelclass,
+    #opcionais-title {
         font-weight: bold;
         margin-bottom: 15px;
         color: #222;
@@ -152,17 +154,23 @@ import Message from './Message.vue'
     }
 
 
-    .checkbox-container span,
+    .checkbox-container .labelcheck,
     .checkbox-container input {
         width: auto;
         margin-top: 10px;
+        transition: .5s;
     }
 
-    .checkbox-container span {
+
+    .checkbox-container .labelcheck {
         margin-left: 6px;
         font-weight: bold;
         cursor: default;
     }
+    .checkbox-container input:checked , .labelcheck:hover {
+        color: #ccc;
+    }
+
 
     .submit-btn{
         background-color: #222;
