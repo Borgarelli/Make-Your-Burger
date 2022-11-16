@@ -72,7 +72,6 @@ import Message from './Message.vue'
             async createBurger(e) { //criação do metódo para criar um lanche, atribuindo ele a um evento
 
                 e.preventDefault();
-
                 const data = { //criação do objeto para definir os parametros que serviram para enviar dados ao banco
                     nome: this.nome,
                     pao: this.pao,
@@ -81,7 +80,6 @@ import Message from './Message.vue'
                     status: "Solicitado"
                 }
                 const dataJson = JSON.stringify(data); //Objeto que transforma os dados em formato de string e manda para o banco
-
                 const req = await fetch("http://localhost:3000/burgers", { //Aqui cria o metódo post que conecta com o localhost do backend gerado pelo vue
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
@@ -89,11 +87,10 @@ import Message from './Message.vue'
                 });
 
                 const res = await req.json()
-
                 console.log(res)
 
                 //colocar uma msg de sistema
-                this.msg = 'Pedido realizado com sucesso' //Retorna a mensagem quando o pedido for realizado
+                this.msg = `Pedido Nº ${res.id} realizado com sucesso` //Retorna a mensagem quando o pedido for realizado
 
                 //limpar msg
                 setTimeout(() => this.msg = "", 3000); //Limpa todo o campo depois de 3 segundos
@@ -104,9 +101,7 @@ import Message from './Message.vue'
                 this.pao = "";
                 this.opcionais = [];
                 
-            }
-
-            
+            }            
         },
         mounted(){ //Aqui inia um lyfeciclehook que irá retornar os dados 
             this.getIngredientes()

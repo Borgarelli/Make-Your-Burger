@@ -58,12 +58,9 @@ import Message from './Message.vue';
             async getPedidos() {
 
                 const req = await fetch("http://localhost:3000/burgers");
-
                 const data = await req.json();
 
                 this.burgers = data; //Transforma os valores recebidos do banco em data, no caso retorna todos os valores armazenados na tabela de burgers, ou seja, todos os pedidos cadastrados pelo formulário
-
-                console.log(this.burgers);
 
                 //resgatar o status
                 this.getStatus();
@@ -71,12 +68,9 @@ import Message from './Message.vue';
 
             async getStatus() {
                 const req = await fetch("http://localhost:3000/status");
-
                 const data = await req.json();
 
                 this.status = data;
-
-                console.log(data);
             },
             
             async deleteBurger(id) { //Metódo para excluir burgers
@@ -97,7 +91,6 @@ import Message from './Message.vue';
             async updateBurger(event, id) { //Método para atualização de status dentro do banco e no site
 
                 const option = event.target.value;
-
                 const dataJson = JSON.stringify ({status: option});
 
                 const req = await fetch(`http://localhost:3000/burgers/${id}`, {
@@ -106,9 +99,10 @@ import Message from './Message.vue';
                     body: dataJson 
                 });
 
-                const res = await req.json;
+                const res = await req.json(); //basicamente recebe os parametros passados pela requisição
 
-                console.log(res);
+                this.msg = `Pedido Nº ${res.id} está ${res.status}`; //Retorna a mensagem dizendo qual pedido foi alterado e para qual ação ele foi alterado
+                setTimeout(() => this.msg = "", 3000);
             }
         },
         mounted(){

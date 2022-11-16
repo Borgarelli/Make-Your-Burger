@@ -90,7 +90,7 @@
         "Bacon",
         "Cheddar"
       ],
-      "status": "Em produção",
+      "status": "Solicitado",
       "id": 1
     },
     {
@@ -101,8 +101,18 @@
         "Cebola roxa",
         "Tomate"
       ],
-      "status": "Solicitado",
+      "status": "Em produção",
       "id": 2
+    },
+    {
+      "nome": "Kauã",
+      "pao": "3 Queijos",
+      "carne": "Alcatra",
+      "opcionais": [
+        "Bacon"
+      ],
+      "status": "Solicitado",
+      "id": 3
     }
   ]
 }
