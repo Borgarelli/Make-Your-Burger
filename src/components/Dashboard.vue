@@ -25,9 +25,9 @@
                     </ul>
                 </div>
                 <div>
-                    <select name="status" class="status">
+                    <select name="status" class="status" @change="updateBurger($event, burger.id)">
                         <!-- <option value="">Selecione</option> -->
-                        <option v-for="stat in status" :key="stat.id" value="stat.tipo" :selected="burger.status == stat.tipo"> <!--Aqui o :selected está bindado para definir o status em que o pedido do hamburger se encontra, no caso como o pedido ja foi solicitado, todos os status de pedidos estaram como solicitados por enquanto-->
+                        <option v-for="stat in status" :key="stat.id" :value="stat.tipo" :selected="burger.status == stat.tipo"> <!--Aqui o :selected está bindado para definir o status em que o pedido do hamburger se encontra, no caso como o pedido ja foi solicitado, todos os status de pedidos estaram como solicitados por enquanto-->
                             {{stat.tipo}}
                         </option>
                     </select>
@@ -92,6 +92,23 @@ import Message from './Message.vue';
                 this.msg = "Pedido cancelado";
 
                 setTimeout(() => this.msg="", 3000);
+            },
+
+            async updateBurger(event, id) { //Método para atualização de status dentro do banco e no site
+
+                const option = event.target.value;
+
+                const dataJson = JSON.stringify ({status: option});
+
+                const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+                    method: "PATCH",
+                    headers: {"Content-type": "application/json" },
+                    body: dataJson 
+                });
+
+                const res = await req.json;
+
+                console.log(res);
             }
         },
         mounted(){
