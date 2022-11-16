@@ -128,13 +128,15 @@ import Message from './Message.vue';
         font-weight: bold;
         padding: 12px;
         border-bottom: 3px solid #333;
+        cursor: default;
     }
 
     #table-head div{
         width: 19%;
     }
     .burger-table-row div {
-        width: 19%
+        width: 19%;
+        cursor: default;
     }
 
     .burger-table-row {
