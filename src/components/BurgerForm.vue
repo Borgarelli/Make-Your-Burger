@@ -4,7 +4,7 @@
         <div>
             <form id="id-form" @submit="createBurger"> <!--Atribuindo o evento ao formulário, sempre que o botão de submit for utilizado, envia os dados registrados no formulário para o banco-->
               <div class="input-container">
-                <label for="nome">Nome do Cliente </label>
+                <label for="nome">Nome do cliente </label>
                 <input type="text" id="nome" name="nome" v-model="nome" placeholder="Digite o seu nome">
               </div>
               <div class="input-container">
@@ -151,6 +151,7 @@ import Message from './Message.vue'
         margin-bottom: 20px;
     }
 
+
     .checkbox-container span,
     .checkbox-container input {
         width: auto;
@@ -160,6 +161,7 @@ import Message from './Message.vue'
     .checkbox-container span {
         margin-left: 6px;
         font-weight: bold;
+        cursor: default;
     }
 
     .submit-btn{
@@ -169,7 +171,7 @@ import Message from './Message.vue'
         border: 2px solid #222;
         padding: 10px;
         font-size: 16px;
-        margin: 0 auto; /*Faz o botão ficar centralizado no container */
+        margin: 10 auto; /*Faz o botão ficar centralizado no container */
         cursor: pointer;
         transition: .5s;
     }
