@@ -83,7 +83,7 @@ import Message from './Message.vue';
 
                 this.getPedidos(); //Já faz um retorno dos burgers registrados, logo após exlcuir algum
 
-                this.msg = "Pedido cancelado";
+                this.msg = `Pedido Nº ${id} cancelado`;
 
                 setTimeout(() => this.msg="", 3000);
             },

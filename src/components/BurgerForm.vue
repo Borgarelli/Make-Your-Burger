@@ -167,6 +167,8 @@ import Message from './Message.vue'
         font-weight: bold;
         cursor: default;
     }
+
+    
     .checkbox-container input:checked , .labelcheck:hover {
         color: #ccc;
     }
