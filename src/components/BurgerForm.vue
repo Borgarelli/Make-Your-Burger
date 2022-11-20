@@ -91,10 +91,10 @@ import Message from './Message.vue'
                 console.log(res)
 
                 //colocar uma msg de sistema
-                this.msg = `Pedido Nº ${res.id} realizado com sucesso` //Retorna a mensagem quando o pedido for realizado
+                this.msg = `Pedido Nº ${res.id} realizado com sucesso` //Retorna a mensagem quando o pedido for realizado pelo id cadastrado
 
                 //limpar msg
-                setTimeout(() => this.msg = "", 3000); //Limpa todo o campo depois de 3 segundos
+                setTimeout(() => this.msg = "", 3000); //Limpa todo a mensagem na tela depois de 3 segundos
 
                 //limpar os campos
                 this.nome = "";
