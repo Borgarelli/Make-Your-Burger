@@ -113,6 +113,18 @@
       ],
       "status": "Em produção",
       "id": 3
+    },
+    {
+      "nome": "Kauã Borgarelli",
+      "pao": "3 Queijos",
+      "carne": "Picanha",
+      "opcionais": [
+        "Salame",
+        "Cheddar",
+        "Pepino"
+      ],
+      "status": "Em produção",
+      "id": 4
     }
   ]
 }
